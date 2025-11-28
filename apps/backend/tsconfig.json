@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",  // CHANGED: Use CJS to match Prisma's generated client
+    "moduleResolution": "node",  // CHANGED: Standard for CJS (drops nodenext/ESM)
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2023",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,  // Keeps Prisma null types happy
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "noFallthroughCasesInSwitch": false,
+    "preserveSymlinks": true,
+    "noResolve": false,
+    "allowJs": true  // NEW: Allows .js files (like generated client) in compilation
+  },
+  "include": ["src/**/*.ts", "prisma/**/*.ts"],
+  "exclude": ["node_modules", "dist", "generated"]
+}
