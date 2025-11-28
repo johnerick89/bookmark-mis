@@ -83,8 +83,16 @@ Docker provides an isolated environment with PostgreSQL database included. Perfe
 3. **Start services (Backend + Database):**
 
    ```bash
-   docker-compose up -d
+   docker compose up -d
    ```
+
+   or
+
+   ```bash
+   docker compose up -d
+   ```
+
+   for mac
 
    This will:
 
@@ -97,13 +105,26 @@ Docker provides an isolated environment with PostgreSQL database included. Perfe
 4. **View logs:**
 
    ```bash
-   docker-compose logs -f backend
+   docker compose logs -f backend
+   ```
+
+   or
+
+   ```bash
+   docker compose logs -f backend
+
+   ```
+
+   for mac
+
+   ```
+
    ```
 
 5. **Seed database (optional):**
 
    ```bash
-   docker-compose exec backend pnpm seed
+   docker compose exec backend pnpm seed
    ```
 
 ### Docker Development Setup (Database Only)
@@ -114,7 +135,7 @@ For local development where you run the backend outside Docker:
 
    ```bash
    cd apps/backend
-   docker-compose -f docker-compose.dev.yml up -d
+   docker compose -f docker compose.dev.yml up -d
    ```
 
 2. **Update your local `.env` in `apps/backend/`:**
@@ -139,38 +160,38 @@ For local development where you run the backend outside Docker:
 **Start services:**
 
 ```bash
-docker-compose up -d              # Start in background
-docker-compose up                  # Start with logs
-docker-compose up --build          # Rebuild and start
+docker compose up -d              # Start in background
+docker compose up                  # Start with logs
+docker compose up --build          # Rebuild and start
 ```
 
 **Stop services:**
 
 ```bash
-docker-compose down                # Stop services
-docker-compose down -v             # Stop and remove volumes (⚠️ deletes data)
+docker compose down                # Stop services
+docker compose down -v             # Stop and remove volumes (⚠️ deletes data)
 ```
 
 **View logs:**
 
 ```bash
-docker-compose logs -f backend     # Backend logs
-docker-compose logs -f postgres   # Database logs
-docker-compose logs               # All logs
+docker compose logs -f backend     # Backend logs
+docker compose logs -f postgres   # Database logs
+docker compose logs               # All logs
 ```
 
 **Run commands in container:**
 
 ```bash
-docker-compose exec backend pnpm prisma:migrate    # Run migrations
-docker-compose exec backend pnpm seed              # Seed database
-docker-compose exec backend sh                    # Access shell
+docker compose exec backend pnpm prisma:migrate    # Run migrations
+docker compose exec backend pnpm seed              # Seed database
+docker compose exec backend sh                    # Access shell
 ```
 
 **Database access:**
 
 ```bash
-docker-compose exec postgres psql -U postgres -d bookmark_mis
+docker compose exec postgres psql -U postgres -d bookmark_mis
 ```
 
 ### Docker Environment Variables
@@ -191,26 +212,26 @@ docker-compose exec postgres psql -U postgres -d bookmark_mis
 
 ```bash
 # Check if services are running
-docker-compose ps
+docker compose ps
 
 # Check database health
-docker-compose logs postgres
+docker compose logs postgres
 
 # Restart services
-docker-compose restart
+docker compose restart
 ```
 
 **Rebuild after code changes:**
 
 ```bash
-docker-compose up -d --build backend
+docker compose up -d --build backend
 ```
 
 **Reset everything:**
 
 ```bash
-docker-compose down -v
-docker-compose up -d
+docker compose down -v
+docker compose up -d
 ```
 
 For more Docker details, see [`apps/backend/DOCKER.md`](apps/backend/DOCKER.md)
@@ -446,8 +467,8 @@ cd apps/dashboard && pnpm test
 2. **Start with Docker:**
 
    ```bash
-   docker-compose up -d or docker compose up -d
-   docker-compose exec backend pnpm seed or docker compose exec  backend pnpm seed
+   docker compose up -d or docker compose up -d
+   docker compose exec backend pnpm seed or docker compose exec  backend pnpm seed
    ```
 
 3. **Development (Dashboard locally):**
@@ -459,7 +480,7 @@ cd apps/dashboard && pnpm test
 
 4. **View logs:**
    ```bash
-   docker-compose logs -f backend
+   docker compose logs -f backend
    ```
 
 ### Option B: Local Workflow
@@ -475,7 +496,7 @@ cd apps/dashboard && pnpm test
    ```bash
    # Option 1: Use Docker for database only
    cd apps/backend
-   docker-compose -f docker-compose.dev.yml up -d
+   docker compose -f docker compose.dev.yml up -d
    cd ../..
 
    # Option 2: Use local PostgreSQL
@@ -579,8 +600,8 @@ The application uses JWT-based authentication:
 
 **Docker:**
 
-- Check if database container is running: `docker-compose ps`
-- View database logs: `docker-compose logs postgres`
+- Check if database container is running: `docker compose ps`
+- View database logs: `docker compose logs postgres`
 - Verify `DATABASE_URL` uses service name `postgres` (not `localhost`) in Docker
 
 **Local:**
@@ -611,11 +632,11 @@ The application uses JWT-based authentication:
 
 ```bash
 # Run migrations manually
-docker-compose exec backend pnpm prisma:migrate
+docker compose exec backend pnpm prisma:migrate
 
 # Reset database (⚠️ deletes data)
-docker-compose down -v
-docker-compose up -d
+docker compose down -v
+docker compose up -d
 ```
 
 **Local:**
@@ -628,9 +649,9 @@ pnpm migrate:dev
 
 ### Docker Build Issues
 
-- Clear Docker cache: `docker-compose build --no-cache`
-- Rebuild specific service: `docker-compose up -d --build backend`
-- Check Docker logs: `docker-compose logs backend`
+- Clear Docker cache: `docker compose build --no-cache`
+- Rebuild specific service: `docker compose up -d --build backend`
+- Check Docker logs: `docker compose logs backend`
 
 ### Prisma Client Issues
 
@@ -638,7 +659,7 @@ pnpm migrate:dev
 
   ```bash
   # Docker
-  docker-compose exec backend pnpm prisma:generate
+  docker compose exec backend pnpm prisma:generate
 
   # Local
   pnpm prisma:generate
