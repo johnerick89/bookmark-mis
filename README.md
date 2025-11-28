@@ -946,6 +946,16 @@ The application uses **node-nlp's NlpManager** for automatic tag generation from
 - [ ] **Add request validation** middleware
 - [ ] **Implement proper error boundaries** in frontend
 
+## Honesty Declaration
+
+I confirm that this submission is my own work. I have:
+
+- [ ] Not copied code from existing solutions or other candidates
+- [ ] Used AI assistants only for syntax help and debugging specific errors
+- [ ] Not received human help during the assignment period
+- [ ] Built the core logic and architecture myself
+- [ ] Cited any references used for specific solutions
+
 ## 📄 License
 
 ISC
